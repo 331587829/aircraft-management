@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+**/node_modules/
+
+# Cloudbase local config
+.cloudbase/
+cloudbaserc.json
+
+# IDE files
+.vscode/
+.trae/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Wechat Mini Program
+project.private.config.json
+miniprogram/project.private.config.json
+miniprogram/miniprogram_npm/

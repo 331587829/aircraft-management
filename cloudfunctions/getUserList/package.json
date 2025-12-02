@@ -1,0 +1,11 @@
+{
+  "name": "getUserList",
+  "version": "1.0.0",
+  "description": "获取用户列表",
+  "main": "index.js",
+  "author": "TraeAI",
+  "license": "MIT",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

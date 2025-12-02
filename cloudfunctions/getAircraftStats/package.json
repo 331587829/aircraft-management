@@ -1,0 +1,9 @@
+{
+  "name": "get-aircraft-stats",
+  "version": "1.0.0",
+  "description": "获取飞机使用统计数据云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

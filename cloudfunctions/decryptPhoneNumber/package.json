@@ -1,0 +1,9 @@
+{
+  "name": "decryptPhoneNumber",
+  "version": "1.0.0",
+  "description": "解密微信小程序手机号码",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

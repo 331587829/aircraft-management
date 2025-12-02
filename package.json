@@ -1,0 +1,19 @@
+{
+  "name": "DLE轻型运动飞机DL-2L云雁",
+  "version": "1.0.0",
+  "description": "基于小程序 + 云开发的DLE轻型运动飞机DL-2L云雁管理系统",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "小程序",
+    "云开发",
+    "DLE轻型运动飞机",
+    "DL-2L云雁"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "miniprogram-ci": "^2.1.26"
+  }
+}

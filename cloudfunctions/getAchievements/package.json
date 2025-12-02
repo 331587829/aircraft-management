@@ -1,0 +1,14 @@
+{
+  "name": "getAchievements",
+  "version": "1.0.0",
+  "description": "获取用户飞行成就数据",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  },
+  "author": "",
+  "license": "ISC"
+}

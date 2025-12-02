@@ -1,0 +1,11 @@
+{
+  "name": "updateUserRole",
+  "version": "1.0.0",
+  "description": "更新用户角色",
+  "main": "index.js",
+  "author": "TraeAI",
+  "license": "MIT",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "update-aircraft-hours",
+  "version": "1.0.0",
+  "description": "更新飞机飞行时长云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

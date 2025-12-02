@@ -1,0 +1,9 @@
+{
+  "name": "getRecentFlightRecords",
+  "version": "1.0.0",
+  "description": "获取用户最近飞行记录",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}
