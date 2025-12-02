@@ -1,0 +1,208 @@
+<!--pages/admin/admin.wxml-->
+<view class="modern-container">
+  <!-- 顶部背景 -->
+  <view class="bg-decoration"></view>
+
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">飞机管理后台</text>
+    <text class="page-subtitle">高效管理机队资产与信息</text>
+  </view>
+
+  <!-- 统计概览卡片 -->
+  <view class="stats-grid">
+    <view class="stat-card">
+      <view class="stat-value">{{aircraftList.length || 0}}</view>
+      <view class="stat-label">机队总数</view>
+    </view>
+    <view class="stat-card">
+      <view class="stat-value highlight">{{boundCount || 0}}</view>
+      <view class="stat-label">已绑定</view>
+    </view>
+  </view>
+
+  <!-- 添加飞机表单 -->
+  <view class="section-title-bar" id="add-form">
+    <text class="section-name">录入新机</text>
+  </view>
+
+  <view class="card form-card">
+    <view class="form-grid">
+      <!-- 序列号 -->
+      <view class="form-item">
+        <text class="label">序列号 <text class="required">*</text></text>
+        <view class="input-box">
+          <input 
+            class="input" 
+            placeholder="请输入序列号" 
+            placeholder-class="placeholder"
+            value="{{aircraftData.serialNumber}}" 
+            bindinput="onAircraftInput" 
+            data-field="serialNumber" 
+          />
+        </view>
+      </view>
+      
+      <!-- 注册号 -->
+      <view class="form-item">
+        <text class="label">注册号</text>
+        <view class="input-box">
+          <input 
+            class="input" 
+            placeholder="请输入注册号" 
+            placeholder-class="placeholder"
+            value="{{aircraftData.registrationNumber}}" 
+            bindinput="onAircraftInput" 
+            data-field="registrationNumber" 
+          />
+        </view>
+      </view>
+      
+      <!-- 生产年份 -->
+      <view class="form-item">
+        <text class="label">生产年份 <text class="required">*</text></text>
+        <view class="input-box">
+          <input 
+            class="input" 
+            type="number" 
+            placeholder="例如: 2025" 
+            placeholder-class="placeholder"
+            value="{{aircraftData.yearOfManufacture}}" 
+            bindinput="onAircraftInput" 
+            data-field="yearOfManufacture" 
+          />
+        </view>
+      </view>
+    </view>
+
+    <!-- 图片上传 -->
+    <view class="upload-area">
+      <text class="label">飞机照片</text>
+      <view class="upload-box" bindtap="chooseAircraftImage">
+        <image wx:if="{{aircraftImageSrc}}" src="{{aircraftImageSrc}}" class="preview-img" mode="aspectFill"></image>
+        <view wx:else class="upload-placeholder">
+          <view class="upload-icon-circle">
+            <text class="icon">📷</text>
+          </view>
+          <text class="upload-text">点击上传照片</text>
+        </view>
+      </view>
+    </view>
+    
+    <button 
+      class="submit-btn {{(!canSubmit || submitting) ? 'disabled' : ''}}" 
+      bindtap="addAircraft" 
+      disabled="{{!canSubmit || submitting}}"
+      hover-class="btn-hover"
+    >
+      {{submitting ? '正在提交...' : '确认添加'}}
+    </button>
+  </view>
+  
+  <!-- 飞机列表 -->
+  <view class="section-title-bar list-header">
+    <text class="section-name">机队列表</text>
+    <view class="list-filter">
+      <text>共 {{aircraftList.length}} 架</text>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{aircraftList.length === 0}}">
+    <image class="empty-image" src="/images/aircraft-placeholder.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无飞机数据</text>
+    <text class="empty-sub">快去上方录入第一架飞机吧</text>
+  </view>
+
+  <!-- 列表卡片 -->
+  <view class="aircraft-list" wx:else>
+    <view class="aircraft-card" wx:for="{{aircraftList}}" wx:key="_id">
+      <view class="card-status {{item.isBound ? 'bound' : 'unbound'}}">
+        {{item.isBound ? '已绑定' : '未绑定'}}
+      </view>
+      
+      <view class="card-main">
+        <image class="card-thumb" src="{{item.image || '/images/aircraft-placeholder.png'}}" mode="aspectFill"></image>
+        <view class="card-info">
+          <view class="card-header">
+            <text class="card-serial">{{item.serialNumber}}</text>
+            <text class="card-reg">{{item.registrationNumber ? '注册号 ' + item.registrationNumber : '未注册'}}</text>
+          </view>
+          <view class="card-meta">
+            <text class="meta-item">📅 {{item.yearOfManufacture}}年</text>
+            <text class="meta-item">⏱️ {{item.totalHours || 0}}小时</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="card-actions">
+        <view class="action-btn edit" catchtap="editAircraft" data-id="{{item._id}}" data-index="{{index}}" hover-class="action-hover">
+          <text class="action-icon">✏️</text>
+          <text>编辑</text>
+        </view>
+        <view class="action-divider"></view>
+        <view class="action-btn delete" catchtap="deleteAircraft" data-id="{{item._id}}" data-index="{{index}}" hover-class="action-hover">
+          <text class="action-icon">🗑️</text>
+          <text>删除</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部留白 -->
+  <view class="footer-spacer"></view>
+</view>
+
+<!-- 图片压缩画布 -->
+<canvas type="2d" id="compressCanvas" style="position: absolute; top: -9999px; left: -9999px; width: 1920px; height: 1920px;"></canvas>
+
+<!-- 编辑弹窗 -->
+<view class="modal-mask {{showEditModal ? 'show' : ''}}" bindtap="closeEditModal">
+  <view class="modal-container" catchtap="preventProp">
+    <view class="modal-header">
+      <text class="modal-title">编辑信息</text>
+      <view class="modal-close" bindtap="closeEditModal">×</view>
+    </view>
+    
+    <scroll-view scroll-y class="modal-content">
+      <view class="form-item">
+        <text class="label">序列号</text>
+        <view class="input-box">
+          <input class="input" value="{{editAircraftData.serialNumber}}" bindinput="onEditInput" data-field="serialNumber" />
+        </view>
+      </view>
+      
+      <view class="form-item">
+        <text class="label">注册号</text>
+        <view class="input-box">
+          <input class="input" value="{{editAircraftData.registrationNumber}}" bindinput="onEditInput" data-field="registrationNumber" />
+        </view>
+      </view>
+      
+      <view class="form-item">
+        <text class="label">生产年份</text>
+        <view class="input-box">
+          <input class="input" type="number" value="{{editAircraftData.yearOfManufacture}}" bindinput="onEditInput" data-field="yearOfManufacture" />
+        </view>
+      </view>
+      
+      <view class="upload-area mini">
+        <text class="label">更新照片</text>
+        <view class="upload-box" bindtap="chooseEditImage">
+          <image wx:if="{{editImageSrc}}" src="{{editImageSrc}}" class="preview-img" mode="aspectFill"></image>
+          <view wx:else class="upload-placeholder">
+            <text class="icon">📷</text>
+            <text class="upload-text">更换照片</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    
+    <view class="modal-footer">
+      <button class="modal-btn cancel" bindtap="closeEditModal">取消</button>
+      <button class="modal-btn confirm {{editSubmitting ? 'disabled' : ''}}" bindtap="confirmEdit" disabled="{{!canEditSubmit || editSubmitting}}">
+        {{editSubmitting ? '保存中...' : '保存修改'}}
+      </button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,513 @@
+/* 全局样式 */
+.container {
+  padding: 0;
+  margin: 0;
+  background-color: #f7fafc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 头部样式 */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  flex: 1;
+}
+
+.title-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.bind-button {
+  background-color: #ffffff;
+  color: #1a365d;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+  min-width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  font-weight: bold;
+}
+
+/* 状态卡片样式 */
+.status-card {
+  background-color: #ffffff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* 飞机选择器样式 */
+.aircraft-selector {
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.selector-header {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.current-aircraft-info {
+  flex: 1;
+}
+
+.aircraft-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a365d;
+  margin-bottom: 8rpx;
+}
+
+.aircraft-serial {
+  display: block;
+  font-size: 28rpx;
+  color: #718096;
+}
+
+.selector-arrow {
+  color: #a0aec0;
+}
+
+.aircraft-dropdown {
+  background-color: #f7fafc;
+  border-top: 1rpx solid #e2e8f0;
+}
+
+.dropdown-list {
+  max-height: 300rpx;
+  overflow-y: auto;
+}
+
+.dropdown-item {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-model {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1a365d;
+  margin-bottom: 5rpx;
+}
+
+.item-serial {
+  display: block;
+  font-size: 24rpx;
+  color: #718096;
+}
+
+.item-status {
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* 状态信息样式 */
+.status-info {
+  padding: 30rpx;
+}
+
+.status-indicator {
+  margin-bottom: 30rpx;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 12rpx 24rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.info-item {
+  background-color: #f7fafc;
+  padding: 20rpx;
+  border-radius: 12rpx;
+  text-align: center;
+}
+
+.info-label {
+  font-size: 24rpx;
+  color: #718096;
+  margin-bottom: 8rpx;
+}
+
+.info-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1a365d;
+}
+
+/* 飞机照片样式 */
+.aircraft-photo-section {
+  margin-bottom: 40rpx;
+}
+
+.aircraft-photo-container {
+  position: relative;
+  width: 100%;
+  height: 300rpx;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #f7fafc;
+}
+
+.aircraft-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 12rpx;
+}
+
+.photo-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28rpx;
+  color: #a0aec0;
+  text-align: center;
+}
+
+/* 飞行记录样式 */
+.flight-record-section {
+  background-color: #ffffff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.flight-record-header {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.flight-record-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a365d;
+}
+
+.add-flight-button {
+  background-color: #3182ce;
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: bold;
+  min-width: 120rpx;
+}
+
+.flight-record-content {
+  padding: 20rpx 30rpx;
+}
+
+.flight-record-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.flight-info {
+  flex: 1;
+}
+
+.flight-date {
+  display: block;
+  font-size: 28rpx;
+  color: #718096;
+  margin-bottom: 5rpx;
+}
+
+.flight-duration {
+  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a365d;
+}
+
+.flight-actions {
+  display: flex;
+  gap: 10rpx;
+  align-items: center;
+}
+
+
+
+.start-flight-button {
+  background-color: #38a169;
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: bold;
+  min-width: 120rpx;
+  height: 56rpx;
+  line-height: 40rpx;
+}
+
+.end-flight-button {
+  background-color: #e53e3e;
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  font-weight: bold;
+  min-width: 120rpx;
+  height: 56rpx;
+  line-height: 40rpx;
+}
+
+.flight-summary {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1rpx solid #e2e8f0;
+  padding-top: 20rpx;
+}
+
+.summary-text {
+  font-size: 24rpx;
+  color: #718096;
+}
+
+/* 滑动切换区域 */
+.swiper-section {
+  margin: 20rpx;
+}
+
+.aircraft-swiper {
+  height: 200rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.swiper-item {
+  position: relative;
+  height: 100%;
+}
+
+.swiper-image {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 20rpx;
+  color: #ffffff;
+}
+
+.swiper-model {
+  display: block;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-bottom: 5rpx;
+}
+
+.swiper-status {
+  font-size: 24rpx;
+}
+
+/* 空状态样式 */
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60rpx 40rpx;
+}
+
+.empty-image {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #4a5568;
+  margin-bottom: 15rpx;
+}
+
+.empty-subtext {
+  font-size: 28rpx;
+  color: #718096;
+  margin-bottom: 40rpx;
+}
+
+.empty-button {
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  color: #ffffff;
+  font-size: 28rpx;
+  padding: 20rpx 40rpx;
+  border-radius: 30rpx;
+}
+
+/* 加载状态样式 */
+.loading-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60rpx 40rpx;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #e2e8f0;
+  border-top: 4rpx solid #2b6cb0;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #718096;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.detail-value {
+  font-size: 24rpx;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+
+
+/* 统计数据样式 */
+.statistics-section {
+  background-color: #ffffff;
+  padding: 20rpx;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 10rpx 0;
+}
+
+.stat-number {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1a365d;
+  margin-bottom: 5rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #718096;
+}
+
+/* 飞行计时器样式 */
+.flight-timer {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-top: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(56, 161, 105, 0.3);
+  animation: pulse 2s infinite;
+}
+
+.timer-icon {
+  font-size: 60rpx;
+  margin-right: 30rpx;
+}
+
+.timer-display {
+  flex: 1;
+  color: #ffffff;
+}
+
+.timer-label {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-bottom: 8rpx;
+}
+
+.timer-value {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.timer-hours {
+  font-size: 24rpx;
+  opacity: 0.8;
+  margin-top: 5rpx;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4rpx 12rpx rgba(56, 161, 105, 0.3);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 6rpx 16rpx rgba(56, 161, 105, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4rpx 12rpx rgba(56, 161, 105, 0.3);
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/aircraft/aircraft",
+    "pages/documents/documents",
+    "pages/profile/profile",
+    "pages/bind-aircraft/bind-aircraft",
+    "pages/flight-record/flight-record",
+    "pages/my-journey/my-journey",
+    "pages/admin/admin",
+    "pages/info-management/info-management",
+    "pages/document-list/document-list",
+    "pages/document-view/document-view",
+    "pages/document-edit/document-edit",
+    "pages/edit-profile/edit-profile",
+    "pages/user-management/user-management"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1a365d",
+    "navigationBarTitleText": "DLE轻型运动飞机DL-2L云雁",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#718096",
+    "selectedColor": "#2b6cb0",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_selected.png"
+      },
+      {
+        "pagePath": "pages/aircraft/aircraft",
+        "text": "飞机",
+        "iconPath": "images/tabbar/aircraft.png",
+        "selectedIconPath": "images/tabbar/aircraft_selected.png"
+      },
+      {
+        "pagePath": "pages/documents/documents",
+        "text": "资讯",
+        "iconPath": "images/tabbar/documents.png",
+        "selectedIconPath": "images/tabbar/documents_selected.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tabbar/profile.png",
+        "selectedIconPath": "images/tabbar/profile_selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "requiredBackgroundModes": ["audio", "location"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

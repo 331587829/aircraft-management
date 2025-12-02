@@ -1,0 +1,65 @@
+<!--pages/info-management/info-management.wxml-->
+<view class="info-management-container">
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <text class="page-title">信息管理中心</text>
+    <text class="page-subtitle">统一管理各类文档信息</text>
+  </view>
+
+  <!-- 文档类型统计区 -->
+  <view class="stats-section">
+    <view class="section-title">
+      <text class="title-text">文档类型统计</text>
+      <text class="title-desc">按类型查看文档数量</text>
+    </view>
+    
+    <view class="stats-grid">
+      <view 
+        wx:for="{{documentTypes}}" 
+        wx:key="id" 
+        class="stats-item"
+        bindtap="onDocumentTypeClick"
+        data-id="{{item.id}}"
+        style="border-left: 4px solid {{item.color}}"
+      >
+        <view class="stats-icon" style="background-color: {{item.color}}20; color: {{item.color}}">
+          {{item.icon}}
+        </view>
+        <view class="stats-info">
+          <text class="stats-title">{{item.title}}</text>
+          <text class="stats-count">{{item.count}} 篇</text>
+        </view>
+        <view class="stats-arrow">›</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快速发布区 -->
+  <view class="quick-publish-section">
+    <view class="section-title">
+      <text class="title-text">快速发布</text>
+      <text class="title-desc">一键发布新文档</text>
+    </view>
+    
+    <view class="publish-grid">
+      <view 
+        wx:for="{{publishOptions}}" 
+        wx:key="id" 
+        class="publish-item"
+        bindtap="onPublishOptionClick"
+        data-id="{{item.id}}"
+      >
+        <text class="publish-title">{{item.title}}</text>
+        <text class="publish-desc">{{item.description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 刷新按钮 -->
+  <view class="refresh-section">
+    <button class="refresh-btn" bindtap="refreshData">
+      <text class="refresh-icon">🔄</text>
+      刷新数据
+    </button>
+  </view>
+</view>

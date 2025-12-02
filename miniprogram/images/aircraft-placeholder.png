@@ -1,0 +1,6 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#e3f2fd"/>
+  <path d="M150 50 L200 100 L100 100 Z" fill="#2196f3" stroke="#1976d2" stroke-width="2"/>
+  <circle cx="150" cy="120" r="20" fill="#2196f3"/>
+  <text x="150" y="170" text-anchor="middle" fill="#1976d2" font-size="14" font-family="Arial">飞机图片</text>
+</svg>

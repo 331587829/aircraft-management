@@ -1,0 +1,132 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">我的飞机状态中心</text>
+    </view>
+    <button class="bind-button" type="primary" bindtap="bindNewAircraft">
+      绑定飞机
+    </button>
+  </view>
+
+  <!-- 当前飞机状态卡片 -->
+  <view class="status-card" wx:if="{{currentAircraft}}">
+    <!-- 飞机选择器 -->
+    <view class="aircraft-selector">
+      <view class="selector-header" bindtap="toggleAircraftSelector">
+        <view class="current-aircraft-info">
+          <text class="aircraft-name">{{currentAircraft.serialNumber}}</text>
+          <text class="aircraft-serial">注册号: {{currentAircraft.registrationNumber || '未注册'}}</text>
+        </view>
+        <text class="selector-arrow">{{showAircraftSelector ? '▲' : '▼'}}</text>
+      </view>
+      
+      <!-- 飞机选择下拉列表 -->
+      <view class="aircraft-dropdown" wx:if="{{showAircraftSelector && aircraftList.length > 1}}">
+        <view class="dropdown-list">
+          <view class="dropdown-item" wx:for="{{aircraftList}}" wx:key="id" bindtap="switchAircraft" data-index="{{index}}">
+            <view class="item-info">
+              <text class="item-model">{{item.model}}</text>
+              <text class="item-serial">序列号: {{item.serialNumber}}</text>
+            </view>
+            <view class="item-status" style="background-color: {{item.statusColor}}">{{item.statusText}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 飞机状态信息 -->
+    <view class="status-info">
+      <!-- 状态指示器 -->
+      <view class="status-indicator">
+        <view class="status-badge" style="background-color: {{currentAircraft.statusColor}}">
+          {{currentAircraft.statusText}}
+        </view>
+      </view>
+
+      <!-- 核心信息网格 -->
+      <view class="info-grid">
+        <view class="info-item">
+          <view class="info-label">序列号</view>
+          <view class="info-value">{{currentAircraft.serialNumber}}</view>
+        </view>
+        <view class="info-item">
+          <view class="info-label">总飞行小时</view>
+          <view class="info-value">{{currentAircraft.totalHours}} 小时</view>
+        </view>
+      </view>
+
+      <!-- 飞机照片 -->
+      <view class="aircraft-photo-section">
+        <view class="section-title">飞机照片</view>
+        <view class="aircraft-photo-container">
+          <image class="aircraft-photo" src="{{currentAircraft.image}}" mode="aspectFill" bindtap="previewAircraftImage" wx:if="{{currentAircraft.image}}"></image>
+          <view class="no-photo" wx:else>
+            <text class="camera-icon">📷</text>
+            <text class="no-photo-text">暂无飞机照片</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 飞行记录功能区 -->
+      <view class="flight-record-section">
+        <view class="section-title">飞行记录</view>
+        <view class="flight-actions">
+          <button class="flight-button" type="primary" bindtap="addFlightRecord">
+            <text class="button-icon">✈️</text>
+            <text class="button-text">添加记录</text>
+          </button>
+          <button class="flight-button" type="primary" bindtap="startFlight" wx:if="{{!isFlightInProgress}}">
+            <text class="button-icon">▶️</text>
+            <text class="button-text">开始飞行</text>
+          </button>
+          <button class="flight-button" type="warn" bindtap="endFlight" wx:if="{{isFlightInProgress}}">
+            <text class="button-icon">⏹️</text>
+            <text class="button-text">结束飞行</text>
+          </button>
+        </view>
+        <view class="current-flight" wx:if="{{isFlightInProgress}}">
+          <view class="flight-timer">
+            <view class="timer-icon">⏱️</view>
+            <view class="timer-display">
+              <view class="timer-label">飞行进行中</view>
+              <view class="timer-value">{{currentFlightRecord.durationText}}</view>
+              <view class="timer-hours">总计: {{currentFlightRecord.duration}} 小时</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 滑动切换区域 -->
+  <view class="swiper-section" wx:if="{{aircraftList.length > 1}}">
+    <swiper class="aircraft-swiper" indicator-dots="{{true}}" autoplay="{{false}}" current="{{currentIndex}}" bindchange="onSwiperChange">
+      <swiper-item wx:for="{{aircraftList}}" wx:key="id">
+        <view class="swiper-item">
+          <image class="swiper-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="swiper-info">
+            <text class="swiper-model">{{item.model}}</text>
+            <text class="swiper-status" style="color: {{item.statusColor}}">{{item.statusText}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!currentAircraft && !loading}}">
+    <image class="empty-image" src="cloud://cloud1-8gaa4jfy4b22cd28.636c-cloud1-8gaa4jfy4b22cd28-1381889662/images/aircraft-icon.png"></image>
+    <view class="empty-text">暂无绑定的飞机</view>
+    <view class="empty-subtext">点击右上角绑定您的飞机</view>
+    <button class="empty-button" type="primary" bindtap="bindNewAircraft">
+      立即绑定
+    </button>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <view class="loading-text">加载中...</view>
+  </view>
+</view>

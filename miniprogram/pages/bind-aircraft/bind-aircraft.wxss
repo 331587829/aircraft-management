@@ -1,0 +1,325 @@
+/* pages/bind-aircraft/bind-aircraft.wxss */
+page {
+  background-color: #f5f7fa;
+  --primary-color: #2b6cb0;
+  --primary-light: #ebf8ff;
+  --text-main: #2d3748;
+  --text-sub: #718096;
+  --border-color: #e2e8f0;
+  --white: #ffffff;
+  --shadow-sm: 0 2rpx 4rpx rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  --radius-lg: 24rpx;
+  --radius-md: 16rpx;
+}
+
+.page-container {
+  padding: 30rpx;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 60rpx;
+}
+
+/* 页面头部 */
+.page-header {
+  text-align: center;
+  margin-bottom: 40rpx;
+  padding-top: 20rpx;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: 12rpx;
+  letter-spacing: 1rpx;
+}
+
+.page-subtitle {
+  font-size: 28rpx;
+  color: var(--text-sub);
+}
+
+/* 通用卡片 */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 40rpx 30rpx;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 40rpx;
+}
+
+/* 绑定卡片 */
+.bind-card {
+  position: relative;
+}
+
+.input-group {
+  margin-bottom: 30rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  color: var(--text-sub);
+  margin-bottom: 16rpx;
+  display: block;
+  font-weight: 500;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background: #f7fafc;
+  border: 2rpx solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 20rpx 24rpx;
+  transition: all 0.2s ease;
+  height: 96rpx;
+  box-sizing: border-box;
+}
+
+.input-box.focused {
+  border-color: var(--primary-color);
+  background: var(--white);
+  box-shadow: 0 0 0 4rpx var(--primary-light);
+}
+
+.input-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+  opacity: 0.5;
+}
+
+.input-field {
+  flex: 1;
+  font-size: 32rpx;
+  color: var(--text-main);
+  height: 100%;
+}
+
+.input-placeholder {
+  color: #cbd5e0;
+  font-size: 30rpx;
+}
+
+.error-tip {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #e53e3e;
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.error-tip.show {
+  display: block;
+}
+
+/* 搜索结果/飞机信息 */
+.search-result {
+  animation: slideDown 0.3s ease;
+}
+
+.divider {
+  height: 2rpx;
+  background: #edf2f7;
+  margin: 40rpx 0;
+}
+
+.info-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 30rpx;
+  padding-left: 16rpx;
+  border-left: 6rpx solid var(--primary-color);
+  line-height: 1.2;
+}
+
+.info-grid {
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  padding: 24rpx 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.info-row:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: var(--text-sub);
+}
+
+.info-value {
+  font-size: 30rpx;
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.status-badge {
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.status-badge.active {
+  background: #f0fff4;
+  color: #38a169;
+}
+
+/* 按钮样式 */
+.submit-btn {
+  background: #48bb78; /* 绿色，确认感更强 */
+  color: var(--white);
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  height: 96rpx;
+  box-shadow: 0 4rpx 12rpx rgba(72, 187, 120, 0.3);
+  transition: all 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-btn::after {
+  border: none;
+}
+
+.submit-btn.loading {
+  opacity: 0.8;
+  background: #68d391;
+}
+
+.btn-hover {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 6rpx rgba(72, 187, 120, 0.2);
+}
+
+/* 提示框 */
+.tip-box {
+  display: flex;
+  align-items: flex-start;
+  background: var(--primary-light);
+  border-radius: var(--radius-md);
+  padding: 24rpx;
+  margin-top: 30rpx;
+}
+
+.tip-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 16rpx;
+  margin-top: 4rpx;
+  flex-shrink: 0;
+}
+
+.tip-text {
+  font-size: 26rpx;
+  color: #4299e1;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* 已绑定列表 */
+.section-header {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 24rpx;
+  padding-left: 10rpx;
+}
+
+.bound-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.bound-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s;
+}
+
+.bound-card:active {
+  background: #f9fafb;
+}
+
+.bound-icon-box {
+  width: 80rpx;
+  height: 80rpx;
+  background: var(--primary-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.bound-icon-box image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.bound-info {
+  flex: 1;
+  overflow: hidden;
+}
+
+.bound-serial {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6rpx;
+}
+
+.bound-reg {
+  font-size: 24rpx;
+  color: var(--text-sub);
+}
+
+.bound-action {
+  margin-left: 20rpx;
+}
+
+.unbind-btn {
+  font-size: 24rpx;
+  color: #e53e3e;
+  border: 2rpx solid #feb2b2;
+  padding: 10rpx 24rpx;
+  border-radius: 30rpx;
+  background: #fff5f5;
+  transition: all 0.2s;
+}
+
+.unbind-btn:active {
+  background: #fed7d7;
+  border-color: #e53e3e;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}

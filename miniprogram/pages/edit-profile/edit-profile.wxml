@@ -1,0 +1,123 @@
+<!--pages/edit-profile/edit-profile.wxml-->
+<view class="edit-profile-container">
+  <view class="content-wrapper">
+    <!-- 头像编辑 -->
+    <view class="card avatar-card">
+      <view class="avatar-wrapper">
+        <view class="avatar-rigid-wrapper">
+          <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+            <image src="{{userInfo.avatar}}" mode="aspectFill" class="avatar-img"></image>
+            <view class="camera-badge">
+              <text>📷</text>
+            </view>
+          </button>
+        </view>
+        <text class="avatar-tip">点击更换头像</text>
+      </view>
+    </view>
+
+    <!-- 微信信息快捷获取 -->
+    <view class="card wechat-card" wx:if="{{!userInfo.avatar || !userInfo.nickName}}">
+      <view class="wechat-tip-row">
+        <text class="tip-text">同步微信头像和昵称</text>
+        <button class="sync-btn" bindtap="getUserProfile">一键同步</button>
+      </view>
+    </view>
+
+    <!-- 基本信息表单 -->
+    <view class="card form-card">
+      <view class="card-title">基本信息</view>
+      
+      <!-- 昵称 -->
+      <view class="form-item">
+        <text class="label">昵称</text>
+        <view class="input-wrapper {{validationErrors.nickName ? 'error' : ''}}">
+          <input 
+            type="nickname"
+            class="input"
+            placeholder="请输入昵称" 
+            placeholder-class="placeholder"
+            value="{{userInfo.nickName}}" 
+            bindinput="onNicknameInput"
+            bindchange="onNicknameInput"
+            bindfocus="onFieldFocus"
+            bindblur="onFieldBlur"
+            maxlength="20"
+          />
+          <text class="counter">{{userInfo.nickName.length}}/20</text>
+        </view>
+        <view class="error-msg" wx:if="{{validationErrors.nickName}}">{{validationErrors.nickName}}</view>
+      </view>
+      
+      <!-- 公司名称 -->
+      <view class="form-item">
+        <text class="label">公司名称</text>
+        <view class="input-wrapper {{validationErrors.companyName ? 'error' : ''}}">
+          <input 
+            class="input"
+            placeholder="请输入公司名称" 
+            placeholder-class="placeholder"
+            value="{{userInfo.companyName}}" 
+            bindinput="onCompanyNameInput"
+            bindfocus="onFieldFocus"
+            bindblur="onFieldBlur"
+            maxlength="30"
+          />
+          <text class="counter">{{userInfo.companyName.length}}/30</text>
+        </view>
+        <view class="error-msg" wx:if="{{validationErrors.companyName}}">{{validationErrors.companyName}}</view>
+      </view>
+
+      <!-- 手机号码 -->
+      <view class="form-item">
+        <text class="label">手机号码</text>
+        <view class="phone-wrapper">
+          <block wx:if="{{userInfo.phoneNumber}}">
+            <text class="phone-val">{{userInfo.phoneNumber}}</text>
+          </block>
+          <block wx:else>
+             <button wx:if="{{showPhoneAuthButton}}" class="get-phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
+              获取号码
+            </button>
+            <text wx:else class="placeholder">未获取</text>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <!-- 认证信息（只读） -->
+    <view class="card auth-card">
+      <view class="card-title">认证状态</view>
+      <view class="auth-list">
+        <view class="auth-row">
+          <text class="auth-key">机主认证</text>
+          <view class="auth-tag {{userInfo.hasBoundAircraft ? 'verified' : 'pending'}}">
+            {{userInfo.hasBoundAircraft ? '已认证' : '未认证'}}
+          </view>
+        </view>
+        <view class="divider"></view>
+        <view class="auth-row">
+          <text class="auth-key">会员等级</text>
+          <text class="auth-val">{{userInfo.memberLevel || '普通会员'}}</text>
+        </view>
+        <view class="divider"></view>
+        <view class="auth-row">
+          <text class="auth-key">服务等级</text>
+          <text class="auth-val">{{userInfo.serviceLevel || '标准服务'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="footer-action">
+    <button 
+      class="save-btn {{saving ? 'loading' : ''}}" 
+      hover-class="btn-hover"
+      bindtap="saveProfile"
+      disabled="{{saving}}"
+    >
+      {{saving ? '保存中...' : '保存修改'}}
+    </button>
+  </view>
+</view>

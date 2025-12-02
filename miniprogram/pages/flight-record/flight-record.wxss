@@ -1,0 +1,194 @@
+/* 飞行记录页面样式 */
+.container {
+  padding: 0;
+  margin: 0;
+  background-color: #f7fafc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 头部样式 */
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.header-title {
+  flex: 1;
+}
+
+.title-text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.back-button {
+  background-color: #ffffff;
+  color: #1a365d;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+  min-width: 120rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  font-weight: bold;
+}
+
+/* 表单区域样式 */
+.form-section {
+  background-color: #ffffff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.form-item {
+  padding: 30rpx;
+  border-bottom: 1rpx solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #1a365d;
+  font-weight: bold;
+  min-width: 200rpx;
+}
+
+.form-value {
+  font-size: 28rpx;
+  color: #718096;
+  flex: 1;
+  text-align: right;
+}
+
+.picker-input {
+  font-size: 28rpx;
+  color: #718096;
+  padding: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+  flex: 1;
+  text-align: center;
+}
+
+.datetime-picker {
+  display: flex;
+  gap: 20rpx;
+  flex: 1;
+}
+
+.picker-input-small {
+  font-size: 28rpx;
+  color: #718096;
+  padding: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+  flex: 1;
+  text-align: center;
+}
+
+.duration-input {
+  font-size: 28rpx;
+  color: #1a365d;
+  padding: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+  flex: 1;
+  text-align: center;
+}
+
+.remark-textarea {
+  font-size: 28rpx;
+  color: #1a365d;
+  padding: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 8rpx;
+  min-height: 120rpx;
+  flex: 1;
+}
+
+.remark-count {
+  font-size: 24rpx;
+  color: #a0aec0;
+  text-align: right;
+  margin-top: 10rpx;
+}
+
+.submit-button {
+  background: linear-gradient(135deg, #38a169 0%, #48bb78 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 25rpx;
+  margin: 30rpx;
+  border-radius: 50rpx;
+}
+
+/* 最近记录区域样式 */
+.recent-records-section {
+  background-color: #ffffff;
+  margin: 20rpx;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1a365d;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.records-list {
+  padding: 0 30rpx;
+}
+
+.record-item {
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-item:last-child {
+  border-bottom: none;
+}
+
+.record-date {
+  font-size: 28rpx;
+  color: #1a365d;
+  font-weight: bold;
+  min-width: 200rpx;
+}
+
+.record-duration {
+  font-size: 28rpx;
+  color: #38a169;
+  font-weight: bold;
+}
+
+.record-remark {
+  font-size: 24rpx;
+  color: #718096;
+  flex: 1;
+  text-align: right;
+  margin-left: 20rpx;
+}

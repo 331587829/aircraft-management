@@ -1,0 +1,1411 @@
+/* 我的旅程页面样式 - 全新设计 */
+.journey-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 20rpx;
+  padding-bottom: 40rpx;
+}
+
+/* 页面底部添加一些空白，确保内容不会被底部导航遮挡 */
+.journey-container::after {
+  content: '';
+  display: block;
+  height: 40rpx;
+  width: 100%;
+}
+
+/* 页面头部 - 全新设计 */
+.page-header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  margin-bottom: 30rpx;
+  color: white;
+  box-shadow: 0 8rpx 32rpx rgba(79, 70, 229, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 1%, transparent 1%);
+  background-size: 20rpx 20rpx;
+  opacity: 0.5;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.header-title {
+  font-size: 52rpx;
+  font-weight: 800;
+  letter-spacing: -0.5rpx;
+}
+
+.update-time {
+  font-size: 26rpx;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+  backdrop-filter: blur(10rpx);
+}
+
+/* 加载状态 - 全新设计 */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background: transparent;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80rpx 40rpx;
+}
+
+.loading-spinner {
+  width: 80rpx;
+  height: 80rpx;
+  border: 8rpx solid #e2e8f0;
+  border-top: 8rpx solid #4f46e5;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 40rpx;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 16rpx;
+}
+
+.loading-subtext {
+  font-size: 26rpx;
+  color: #64748b;
+  opacity: 0.8;
+}
+
+/* 错误状态 - 全新设计 */
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background: transparent;
+}
+
+.error-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: white;
+  border-radius: 24rpx;
+  padding: 80rpx 40rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid #f1f5f9;
+  max-width: 600rpx;
+}
+
+.error-icon {
+  font-size: 80rpx;
+  margin-bottom: 32rpx;
+}
+
+.error-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #dc2626;
+  margin-bottom: 24rpx;
+}
+
+.error-message {
+  font-size: 28rpx;
+  color: #64748b;
+  margin-bottom: 48rpx;
+  line-height: 1.5;
+}
+
+.retry-button {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border-radius: 50rpx;
+  padding: 0 48rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  box-shadow: 0 4rpx 16rpx rgba(79, 70, 229, 0.3);
+  transition: all 0.3s ease;
+}
+
+.retry-button:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(79, 70, 229, 0.3);
+}
+
+/* 统计概览 - 全新设计 */
+.stats-overview {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid #f1f5f9;
+}
+
+/* 飞机选择器样式 */
+.aircraft-selector {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f1f5f9;
+}
+
+.selector-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #374151;
+  margin-right: 20rpx;
+  white-space: nowrap;
+}
+
+.aircraft-picker {
+  flex: 1;
+}
+
+.picker-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  border: 1rpx solid #e2e8f0;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  transition: all 0.3s ease;
+}
+
+.picker-content:active {
+  background: #e2e8f0;
+  transform: translateY(1rpx);
+}
+
+.selected-aircraft {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.picker-arrow {
+  font-size: 24rpx;
+  color: #64748b;
+  transition: transform 0.3s ease;
+}
+
+.picker-content:active .picker-arrow {
+  transform: rotate(180deg);
+}
+
+/* 当前飞机信息样式 */
+.current-aircraft-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+  margin-bottom: 24rpx;
+  padding: 16rpx 20rpx;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-radius: 12rpx;
+  border-left: 4rpx solid #0ea5e9;
+}
+
+.aircraft-serial {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.aircraft-model {
+  font-size: 24rpx;
+  color: #475569;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40rpx;
+  margin-bottom: 32rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx 24rpx;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.stat-item:active {
+  transform: translateY(2rpx);
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.stat-value {
+  font-size: 44rpx;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 12rpx;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 26rpx;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.favorite-aircraft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+  border-radius: 20rpx;
+  border: 1rpx solid #c7d2fe;
+}
+
+.favorite-label {
+  font-size: 26rpx;
+  color: #4f46e5;
+  margin-right: 12rpx;
+  font-weight: 600;
+}
+
+.favorite-value {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+/* 多架飞机统计 - 全新设计 */
+.aircraft-stats {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid #f1f5f9;
+}
+
+.aircraft-stats .section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.aircraft-stats .section-title text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.aircraft-count {
+  font-size: 26rpx;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 8rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.aircraft-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+/* 飞机选择器样式 */
+.aircraft-selector {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+  padding: 20rpx;
+  background: #f8fafc;
+  border-radius: 16rpx;
+  border: 1rpx solid #e2e8f0;
+}
+
+.selector-label {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1e293b;
+  min-width: 120rpx;
+}
+
+.picker {
+  flex: 1;
+  padding: 16rpx 20rpx;
+  background: white;
+  border-radius: 12rpx;
+  border: 1rpx solid #cbd5e1;
+  font-size: 28rpx;
+  color: #334155;
+  font-weight: 500;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.picker:active {
+  border-color: #4f46e5;
+  box-shadow: 0 4rpx 16rpx rgba(79, 70, 229, 0.15);
+}
+
+/* 飞机统计数据切换动画 */
+.aircraft-stat-item {
+  background: #f8fafc;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  border: 1rpx solid #e2e8f0;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.aircraft-stat-item:active {
+  transform: translateY(2rpx);
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+/* 优化飞机信息布局 */
+.aircraft-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.aircraft-serial {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.aircraft-model {
+  font-size: 26rpx;
+  color: #64748b;
+  background: #e2e8f0;
+  padding: 6rpx 12rpx;
+  border-radius: 12rpx;
+}
+
+.aircraft-details {
+  display: flex;
+  gap: 20rpx;
+  margin-bottom: 20rpx;
+  flex-wrap: wrap;
+}
+
+.aircraft-registration,
+.aircraft-year {
+  font-size: 24rpx;
+  color: #64748b;
+  background: #ffffff;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #e2e8f0;
+}
+
+.aircraft-stats-details {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #e2e8f0;
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.stat-row .stat-label {
+  font-size: 26rpx;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.stat-row .stat-value {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1e293b;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.aircraft-stat-item {
+  background: #f8fafc;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  border: 1rpx solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.aircraft-stat-item:active {
+  transform: translateY(2rpx);
+  box-shadow: inset 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+
+.aircraft-id {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 16rpx;
+  display: block;
+}
+
+.aircraft-stats-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.stat-detail {
+  font-size: 26rpx;
+  color: #64748b;
+  font-weight: 500;
+}
+
+/* 成就展示区域 - 全新设计 */
+.achievements-section {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid #f1f5f9;
+}
+
+.achievements-section .section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.achievements-section .section-title text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.achievement-progress {
+  font-size: 26rpx;
+  color: #4f46e5;
+  background: #eef2ff;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  font-weight: 600;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24rpx;
+}
+
+.achievement-item {
+  display: flex;
+  align-items: center;
+  padding: 28rpx;
+  border-radius: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.achievement-item.unlocked {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border-color: #7dd3fc;
+  box-shadow: 0 4rpx 16rpx rgba(125, 211, 252, 0.2);
+}
+
+.achievement-item.locked {
+  opacity: 0.7;
+  background: #f8fafc;
+}
+
+.achievement-icon {
+  font-size: 56rpx;
+  margin-right: 24rpx;
+  width: 64rpx;
+  text-align: center;
+}
+
+.achievement-info {
+  flex: 1;
+}
+
+.achievement-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8rpx;
+}
+
+.achievement-description {
+  font-size: 26rpx;
+  color: #64748b;
+  margin-bottom: 16rpx;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8rpx;
+  background: #e2e8f0;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  transition: width 0.3s ease;
+}
+
+.achievement-status {
+  font-size: 44rpx;
+  color: #10b981;
+}
+
+.achievement-item.locked .achievement-status {
+  color: #94a3b8;
+}
+
+/* 飞行记录区域 - 全新设计 */
+.flight-records-section {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid #f1f5f9;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.add-record-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border-radius: 50rpx;
+  padding: 0 36rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  box-shadow: 0 4rpx 16rpx rgba(16, 185, 129, 0.3);
+  transition: all 0.3s ease;
+}
+
+.add-record-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(16, 185, 129, 0.3);
+}
+
+/* 记录列表 */
+.records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.record-item {
+  border: 1rpx solid #e2e8f0;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.record-item:active {
+  transform: translateY(2rpx);
+  background: #f1f5f9;
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.record-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.aircraft-name {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 6rpx;
+}
+
+.flight-date {
+  font-size: 26rpx;
+  color: #64748b;
+}
+
+.flight-duration {
+    display: flex;
+    align-items: center;
+  }
+
+  .duration-value {
+    font-size: 32rpx;
+    font-weight: 700;
+    color: #1e293b;
+    margin-right: 6rpx;
+  }
+
+  .duration-unit {
+    font-size: 26rpx;
+    color: #64748b;
+  }
+
+  .record-details {
+    margin-bottom: 16rpx;
+  }
+
+  .route-text {
+    font-size: 26rpx;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 12rpx 16rpx;
+    border-radius: 12rpx;
+    display: inline-block;
+    border: 1rpx solid #e2e8f0;
+  }
+
+  .record-footer {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .record-status {
+    font-size: 26rpx;
+    padding: 8rpx 16rpx;
+    border-radius: 16rpx;
+    background: #f1f5f9;
+    color: #64748b;
+    font-weight: 600;
+  }
+
+  .record-status.completed {
+    background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+    color: #065f46;
+    border: 1rpx solid #10b981;
+  }
+
+  /* 空状态 - 全新设计 */
+  .empty-state {
+    text-align: center;
+    padding: 80rpx 40rpx;
+  }
+
+  .empty-image {
+    width: 140rpx;
+    height: 140rpx;
+    margin-bottom: 40rpx;
+    opacity: 0.6;
+  }
+
+  .empty-text {
+    font-size: 30rpx;
+    color: #64748b;
+    margin-bottom: 20rpx;
+    display: block;
+    font-weight: 600;
+  }
+
+  .empty-subtext {
+    font-size: 26rpx;
+    color: #94a3b8;
+    margin-bottom: 40rpx;
+    display: block;
+  }
+
+/* 图表区域 - 已移除，两个板块现在独立显示 */
+
+/* 现代化趋势分析样式 */
+.trend-analysis {
+  margin-bottom: 16rpx;
+  padding: 16rpx;
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(79, 172, 254, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.trend-analysis::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  animation: float 8s ease-in-out infinite;
+}
+
+.trend-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.trend-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.trend-label {
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 12rpx;
+  font-weight: 500;
+  letter-spacing: 0.5rpx;
+}
+
+.trend-values {
+  display: flex;
+  gap: 20rpx;
+}
+
+.trend-value {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+  letter-spacing: 1rpx;
+}
+
+.trend-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.trend-direction {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+  padding: 8rpx 16rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50rpx;
+  backdrop-filter: blur(10rpx);
+  border: 1rpx solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+
+.trend-direction:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(4rpx);
+}
+
+.trend-direction.up {
+  color: #07c160;
+  box-shadow: 0 2rpx 8rpx rgba(7, 193, 96, 0.3);
+}
+
+.trend-direction.down {
+  color: #fa5151;
+  box-shadow: 0 2rpx 8rpx rgba(250, 81, 81, 0.3);
+}
+
+.trend-direction.stable {
+  color: #ffd700;
+  box-shadow: 0 2rpx 8rpx rgba(255, 215, 0, 0.3);
+}
+
+.trend-icon {
+  font-size: 28rpx;
+  font-weight: bold;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.3);
+}
+
+.trend-text {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.3);
+}
+
+.trend-message {
+  text-align: center;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16rpx;
+  backdrop-filter: blur(10rpx);
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.message-text {
+  font-size: 24rpx;
+  color: white;
+  font-weight: 500;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5rpx;
+}
+
+/* 月度统计图表容器 */
+.monthly-chart-container {
+  width: 100%;
+  min-height: 240rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(102, 126, 234, 0.1);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.monthly-chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+  opacity: 0.8;
+}
+
+.monthly-chart-container:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.15);
+}
+
+/* 飞行趋势图表容器 */
+.trend-chart-container {
+  width: 100%;
+  min-height: 240rpx;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+  border-radius: 20rpx;
+  border: 1rpx solid rgba(102, 126, 234, 0.1);
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.trend-chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, #4facfe, #00f2fe, #4facfe);
+  opacity: 0.8;
+}
+
+.trend-chart-container:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(79, 172, 254, 0.15);
+}
+
+/* 现代化月度统计汇总样式 */
+.monthly-summary {
+  margin-bottom: 16rpx;
+  padding: 16rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.monthly-summary::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 20rpx 20rpx;
+  animation: float 6s linear infinite;
+  opacity: 0.3;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+
+.summary-item {
+  text-align: center;
+  padding: 16rpx;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16rpx;
+  backdrop-filter: blur(10rpx);
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.summary-item:hover::before {
+  left: 100%;
+}
+
+.summary-item:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.summary-value {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 6rpx;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.3);
+  letter-spacing: 1rpx;
+}
+
+.summary-label {
+  display: block;
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+  letter-spacing: 0.5rpx;
+}
+
+/* 通用图表容器样式 - 已移除，使用独立容器 */
+
+.chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+  opacity: 0.8;
+}
+
+.chart-container:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 32rpx rgba(102, 126, 234, 0.15);
+}
+
+.chart-container:last-child {
+  margin-bottom: 0;
+}
+
+.chart-container .chart-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.chart-container .chart-title::before {
+  content: '📊';
+  font-size: 28rpx;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 200px;
+  border-radius: 12rpx;
+  margin-top: 16rpx;
+}
+
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.loading-spinner {
+  width: 60rpx;
+  height: 60rpx;
+  border: 4rpx solid #f0f0f0;
+  border-top: 4rpx solid #1890ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20rpx;
+}
+
+.loading-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 图表加载状态 */
+.chart-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 200rpx;
+  background: #fafafa;
+  border-radius: 12rpx;
+  border: 1rpx solid #f0f0f0;
+  margin-top: 12rpx;
+}
+
+.chart-loading .loading-spinner {
+  width: 40rpx;
+  height: 40rpx;
+  border-width: 3rpx;
+  margin-bottom: 16rpx;
+}
+
+.chart-loading .loading-text {
+  font-size: 22rpx;
+  color: #666;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10rpx, -10rpx) rotate(90deg); }
+  50% { transform: translate(0, 0) rotate(180deg); }
+  75% { transform: translate(-10rpx, 10rpx) rotate(270deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+/* 分享区域 */
+.share-section {
+  display: flex;
+  gap: 16rpx;
+  padding: 20rpx;
+  background: white;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.share-btn, .timeline-share-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 50rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  font-size: 24rpx;
+}
+
+.timeline-share-btn {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* 响应式设计 - 全新设计 */
+@media (max-width: 750rpx) {
+  .page-container {
+    padding: 20rpx;
+  }
+  
+  .section-title {
+    font-size: 36rpx;
+    margin-bottom: 24rpx;
+  }
+  
+  .achievement-grid {
+    grid-template-columns: 1fr;
+    gap: 20rpx;
+  }
+  
+  .achievement-item {
+    padding: 24rpx;
+  }
+  
+  .flight-record {
+    padding: 24rpx;
+  }
+  
+  .record-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12rpx;
+  }
+  
+  .flight-duration {
+    align-self: flex-start;
+  }
+  
+  .record-footer {
+    justify-content: flex-start;
+    margin-top: 16rpx;
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
+    gap: 20rpx;
+  }
+  
+  .trend-summary {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16rpx;
+  }
+  
+  .trend-values {
+    flex-direction: row;
+    gap: 16rpx;
+  }
+  
+  .share-section {
+    flex-direction: column;
+    gap: 20rpx;
+  }
+  
+  .monthly-chart-container,
+  .trend-chart-container {
+    padding: 20rpx;
+    margin-bottom: 24rpx;
+  }
+  
+  .chart-canvas {
+    height: 180rpx;
+  }
+}
+
+/* 最近飞行记录 - 全新布局样式 */
+.recent-flights {
+  background: white;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid #f1f5f9;
+}
+
+.recent-flights-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.recent-flights-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.recent-flights-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.recent-flight-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28rpx;
+  background: #fafafa;
+  border-radius: 20rpx;
+  border: 1rpx solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.recent-flight-item:active {
+  transform: translateY(2rpx);
+  background: #f1f5f9;
+}
+
+.flight-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.flight-time-info {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.time-label {
+  font-size: 26rpx;
+  color: #64748b;
+  font-weight: 500;
+  min-width: 120rpx;
+}
+
+.time-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1e293b;
+  background: #ffffff;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #d1d5db;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.flight-route {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.route-label {
+  font-size: 26rpx;
+  color: #64748b;
+  font-weight: 500;
+  min-width: 120rpx;
+}
+
+.route-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #4f46e5;
+  background: #eef2ff;
+  padding: 8rpx 16rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #c7d2fe;
+}
+
+.flight-duration {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 140rpx;
+  padding: 20rpx 16rpx;
+  background: #1e40af;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(30, 64, 175, 0.4);
+  border: 2rpx solid #1e3a8a;
+  position: relative;
+  overflow: hidden;
+}
+
+.flight-duration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+}
+
+.duration-value {
+  font-size: 36rpx;
+  font-weight: 800;
+  margin-bottom: 6rpx;
+  color: #ffffff;
+  text-shadow: 0 2rpx 4rpx rgba(0, 0, 0, 0.4);
+  letter-spacing: 1rpx;
+}
+
+.duration-unit {
+  font-size: 26rpx;
+  color: #ffffff;
+  opacity: 1;
+  font-weight: 600;
+  text-shadow: 0 1rpx 2rpx rgba(0, 0, 0, 0.3);
+}

@@ -1,0 +1,52 @@
+<view class="page">
+  <!-- 顶部搜索 -->
+  <view class="top-bar">
+    <text class="title">资讯</text>
+    <view class="search-box">
+      <input placeholder="搜索标题、编号" value="{{searchQuery}}" bindinput="onSearch" confirm-type="search"/>
+      <text wx:if="{{searchQuery}}" class="clear" bindtap="clearSearch">✕</text>
+    </view>
+  </view>
+
+  <!-- 分类导航 -->
+  <scroll-view scroll-x class="nav-scroll" scroll-into-view="nav-{{activeCategory}}" scroll-with-animation>
+    <view class="nav-list">
+      <block wx:for="{{navs}}" wx:key="id">
+        <text id="nav-{{item.id}}" class="nav-item {{activeCategory===item.id?'active':''}}" bindtap="switchCategory" data-category="{{item.id}}">{{item.name}}</text>
+      </block>
+    </view>
+  </scroll-view>
+
+  <!-- 骨架屏 -->
+  <view wx:if="{{loading && !documents.length}}" class="skeleton">
+    <block wx:for="{{3}}" wx:key="index">
+      <view class="sk-card">
+        <view class="sk-cover"></view>
+        <view class="sk-info">
+          <view class="sk-line sk-title"></view>
+          <view class="sk-line sk-desc"></view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 文档列表 -->
+  <scroll-view scroll-y class="list" bindscrolltolower="onReachBottom">
+    <block wx:if="{{documents.length}}">
+      <view class="card" wx:for="{{documents}}" wx:key="id" bindtap="viewDocumentDetail" data-document-id="{{item.id}}" data-document-title="{{item.title}}">
+        <image wx:if="{{item.coverUrl}}" class="cover" src="{{item.coverUrl}}" mode="aspectFill" lazy-load/>
+        <view wx:else class="cover placeholder"></view>
+        <view class="info">
+          <text class="title">{{item.title}}</text>
+          <text class="desc">{{item.description||'暂无描述'}}</text>
+          <text class="meta">{{item.publishDate}}</text>
+        </view>
+      </view>
+      <view wx:if="{{loading}}" class="loading-more">正在加载…</view>
+      <view wx:if="{{!hasMore && documents.length}}" class="no-more">已加载全部</view>
+    </block>
+    <view wx:elif="{{!loading}}" class="empty">
+      <text>暂无内容</text>
+    </view>
+  </scroll-view>
+</view>

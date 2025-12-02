@@ -1,0 +1,81 @@
+<!-- 添加飞行记录页面 -->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">添加飞行记录</text>
+    </view>
+    <button class="back-button" bindtap="goBack">返回</button>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-item">
+      <text class="form-label">飞机型号</text>
+      <text class="form-value">{{aircraftInfo.model || '未知型号'}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">序列号</text>
+      <text class="form-value">{{aircraftInfo.serialNumber || '未知序列号'}}</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">开始时间</text>
+      <view class="datetime-picker">
+        <picker mode="date" value="{{startDate}}" bindchange="onStartDateChange">
+          <view class="picker-input-small">{{startDate || '选择日期'}}</view>
+        </picker>
+        <picker mode="time" value="{{startTime}}" bindchange="onStartTimeChange">
+          <view class="picker-input-small">{{startTime || '选择时间'}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">结束时间</text>
+      <view class="datetime-picker">
+        <picker mode="date" value="{{endDate}}" bindchange="onEndDateChange">
+          <view class="picker-input-small">{{endDate || '选择日期'}}</view>
+        </picker>
+        <picker mode="time" value="{{endTime}}" bindchange="onEndTimeChange">
+          <view class="picker-input-small">{{endTime || '选择时间'}}</view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">飞行时长</text>
+      <text class="duration-display">{{calculatedDuration || '0.0'}} 小时</text>
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">备注信息</text>
+      <textarea 
+        class="remark-textarea" 
+        placeholder="请输入飞行备注信息（可选）" 
+        value="{{flightRemark}}"
+        bindinput="onRemarkInput"
+        maxlength="200"
+      />
+      <text class="remark-count">{{flightRemark.length}}/200</text>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-button" type="primary" bindtap="submitFlightRecord">
+      保存飞行记录
+    </button>
+  </view>
+
+  <!-- 最近飞行记录 -->
+  <view class="recent-records-section" wx:if="{{recentRecords.length > 0}}">
+    <view class="section-title">最近飞行记录</view>
+    <view class="records-list">
+      <view class="record-item" wx:for="{{recentRecords}}" wx:key="id">
+        <view class="record-date">{{item.date}}</view>
+        <view class="record-duration">{{item.duration}}小时</view>
+        <view class="record-remark">{{item.remark || '无备注'}}</view>
+      </view>
+    </view>
+  </view>
+</view>

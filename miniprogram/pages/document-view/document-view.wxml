@@ -1,0 +1,33 @@
+<view class="page">
+  
+
+  <view wx:if="{{loading}}" class="loading">
+    <view class="spinner"></view>
+    <text>加载中...</text>
+  </view>
+  <view wx:elif="{{error}}" class="error">
+    <text>{{errorMsg}}</text>
+    <button bindtap="reloadPage">重新加载</button>
+  </view>
+  <view wx:else class="wrap">
+    <view class="title">{{documentDetail.title || '信息标题'}}</view>
+    <view class="meta">
+      <text class="date">{{publishDate}}</text>
+      <text class="dot">·</text>
+      <text class="category">{{categoryName}}</text>
+    </view>
+    <rich-text class="content" nodes="{{contentHtml}}"></rich-text>
+
+    <view wx:if="{{imageAttachments.length}}" class="gallery">
+      <block wx:for="{{imageAttachments}}" wx:key="index">
+        <image class="img" src="{{item.tempUrl}}" mode="aspectFill" bindtap="onPreviewImage" data-index="{{index}}" />
+      </block>
+    </view>
+
+    <view wx:if="{{fileAttachments.length}}" class="files">
+      <block wx:for="{{fileAttachments}}" wx:key="index">
+        <button class="file" bindtap="onOpenAttachment" data-index="{{index}}">{{item.name || '附件'}}</button>
+      </block>
+    </view>
+  </view>
+</view>

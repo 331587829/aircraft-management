@@ -1,0 +1,132 @@
+<!-- 我的旅程页面 -->
+<view class="journey-container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="header-content">
+      <text class="header-title">我的旅程</text>
+      <text class="update-time" wx:if="{{lastUpdateTime}}">更新于：{{lastUpdateTime}}</text>
+    </view>
+  </view>
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{isLoading}}">
+    <view class="loading-content">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">正在加载飞行数据...</text>
+      <text class="loading-subtext">请稍候，正在获取您的飞行统计信息</text>
+    </view>
+  </view>
+
+  <!-- 错误状态 -->
+  <view class="error-container" wx:if="{{hasError && !isLoading}}">
+    <view class="error-content">
+      <text class="error-icon">⚠️</text>
+      <text class="error-title">数据加载失败</text>
+      <text class="error-message">{{errorMessage}}</text>
+      <button class="retry-button" bindtap="onRetryLoad">重新加载</button>
+    </view>
+  </view>
+
+  <!-- 统计概览 -->
+  <view class="stats-overview" wx:if="{{!hasError && !isLoading}}">
+    <!-- 飞机选择器 -->
+    <view class="aircraft-selector" wx:if="{{aircraftOptions.length > 1}}">
+      <view class="selector-label">选择飞机：</view>
+      <picker 
+        class="aircraft-picker" 
+        mode="selector" 
+        range="{{aircraftOptions}}" 
+        range-key="name"
+        value="{{selectedAircraftIndex}}" 
+        bindchange="onAircraftChange">
+        <view class="picker-content">
+          <text class="selected-aircraft">{{selectedAircraftName}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+    
+    <!-- 当前飞机统计信息 -->
+    <view class="current-aircraft-info" wx:if="{{selectedAircraftData}}">
+      <text class="aircraft-serial">序列号：{{selectedAircraftData.serialNumber}}</text>
+      <text class="aircraft-model">型号：{{selectedAircraftData.model}}</text>
+    </view>
+    
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{selectedAircraftData ? selectedAircraftData.totalFlights : statistics.totalFlights}}</text>
+        <text class="stat-label">总飞行次数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{selectedAircraftData ? selectedAircraftData.totalHours : statistics.totalHours}}</text>
+        <text class="stat-label">总飞行时长(小时)</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{selectedAircraftData ? selectedAircraftData.monthlyFlights : statistics.currentMonthFlights}}</text>
+        <text class="stat-label">本月飞行次数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{selectedAircraftData ? selectedAircraftData.monthlyHours : statistics.currentMonthHours}}</text>
+        <text class="stat-label">本月飞行时长</text>
+      </view>
+    </view>
+    
+
+    
+    <!-- 最近飞行记录 -->
+    <view class="recent-flights" wx:if="{{recentFlightRecords.length > 0}}">
+      <view class="recent-flights-header">
+        <text class="recent-flights-title">最近飞行记录</text>
+      </view>
+      <view class="recent-flights-list">
+        <view class="recent-flight-item" wx:for="{{recentFlightRecords}}" wx:key="id">
+          <view class="flight-info">
+            <view class="flight-time-info">
+              <text class="time-label">日期</text>
+              <text class="time-value">{{item.date}}</text>
+            </view>
+            <view class="flight-time-info">
+              <text class="time-label">开始时间</text>
+              <text class="time-value">{{item.departureTime || '09:00'}}</text>
+            </view>
+            <view class="flight-time-info">
+              <text class="time-label">结束时间</text>
+              <text class="time-value">{{item.arrivalTime || '11:30'}}</text>
+            </view>
+          </view>
+          <view class="flight-duration">
+            <text class="duration-value">{{item.duration}}</text>
+            <text class="duration-unit">小时</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 成就展示区域 -->
+  <view class="achievements-section" wx:if="{{!hasError && !isLoading && achievements.length > 0}}">
+    <view class="section-title">
+      <text>我的飞行成就</text>
+      <text class="achievement-progress">{{unlockedAchievements}}/{{totalAchievements}}</text>
+    </view>
+    <view class="achievements-grid">
+      <view wx:for="{{achievements}}" wx:key="id" class="achievement-item {{item.achieved ? 'unlocked' : 'locked'}}">
+        <view class="achievement-icon">{{item.icon}}</view>
+        <view class="achievement-info">
+          <view class="achievement-name">{{item.name}}</view>
+          <view class="achievement-description">{{item.description}}</view>
+          <view class="progress-bar" wx:if="{{!item.achieved}}">
+            <view class="progress-fill" style="width: {{item.progress}}%"></view>
+          </view>
+        </view>
+        <view class="achievement-status">{{item.achieved ? '✓' : '🔒'}}</view>
+      </view>
+    </view>
+  </view>
+  
+
+
+
+
+
+</view>

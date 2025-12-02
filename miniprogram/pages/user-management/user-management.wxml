@@ -1,0 +1,100 @@
+<view class="container">
+  <!-- 搜索和筛选栏 -->
+  <view class="search-filter-bar">
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input 
+        class="search-input" 
+        placeholder="搜索昵称/手机号" 
+        value="{{keyword}}"
+        bindinput="onSearchInput"
+        confirm-type="search"
+        bindconfirm="onSearch"
+      />
+      <view class="clear-icon" wx:if="{{keyword}}" bindtap="clearSearch">✕</view>
+    </view>
+    
+    <view class="filter-tabs">
+      <view 
+        class="filter-tab {{currentRole === '' ? 'active' : ''}}" 
+        bindtap="switchRole" 
+        data-role=""
+      >全部</view>
+      <view 
+        class="filter-tab {{currentRole === 'admin' ? 'active' : ''}}" 
+        bindtap="switchRole" 
+        data-role="admin"
+      >管理员</view>
+      <view 
+        class="filter-tab {{currentRole === 'user' ? 'active' : ''}}" 
+        bindtap="switchRole" 
+        data-role="user"
+      >普通用户</view>
+    </view>
+  </view>
+
+  <!-- 用户列表 -->
+  <scroll-view 
+    class="user-list" 
+    scroll-y 
+    enable-back-to-top 
+    bindscrolltolower="loadMore"
+    refresher-enabled
+    refresher-triggered="{{isRefreshing}}"
+    bindrefresherrefresh="onRefresh"
+  >
+    <block wx:if="{{userList.length > 0}}">
+      <view class="user-card" wx:for="{{userList}}" wx:key="_id">
+        <view class="user-info-main">
+          <image 
+            class="user-avatar" 
+            src="{{item.avatarUrl || '/images/user-avatar.png'}}" 
+            mode="aspectFill"
+            binderror="onAvatarError"
+            data-index="{{index}}"
+          ></image>
+          <view class="user-details">
+            <view class="user-name-row">
+              <text class="user-nickname">{{item.wechatInfo.nickName || '未命名用户'}}</text>
+              <view class="role-tag {{item.isAdmin ? 'admin' : 'user'}}">
+                {{item.isAdmin ? '管理员' : '普通用户'}}
+              </view>
+            </view>
+            <view class="user-meta">
+              <text class="meta-item" wx:if="{{item.userName}}">姓名: {{item.userName}}</text>
+              <text class="meta-item" wx:if="{{item.phoneNumber}}">手机: {{item.phoneNumber}}</text>
+            </view>
+            <view class="user-time">注册时间: {{item.createTimeStr}}</view>
+          </view>
+        </view>
+        
+        <!-- 操作栏 -->
+        <view class="action-bar">
+          <button 
+            class="action-btn {{item.isAdmin ? 'demote' : 'promote'}}" 
+            hover-class="btn-hover"
+            bindtap="toggleRole" 
+            data-id="{{item._id}}"
+            data-is-admin="{{item.isAdmin}}"
+          >
+            {{item.isAdmin ? '降级为用户' : '设为管理员'}}
+          </button>
+        </view>
+      </view>
+      
+      <!-- 加载状态 -->
+      <view class="loading-state" wx:if="{{isLoadingMore}}">
+        <text>正在加载更多...</text>
+      </view>
+      <view class="no-more-state" wx:if="{{!hasMore && userList.length > 0}}">
+        <text>没有更多用户了</text>
+      </view>
+    </block>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{!isLoading && userList.length === 0}}">
+      <image class="empty-icon" src="https://cloud1-8gaa4jfy4b22cd28-1381889662.tcloudbaseapp.com/images/empty.png" mode="aspectFit"></image>
+      <text>暂无符合条件的用户</text>
+    </view>
+  </scroll-view>
+</view>

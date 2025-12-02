@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "编辑个人信息",
+  "navigationBarBackgroundColor": "#1a365d",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#f8fafc",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": false,
+  "onReachBottomDistance": 50
+}

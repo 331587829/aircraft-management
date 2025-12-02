@@ -1,0 +1,132 @@
+<!--pages/profile/profile.wxml-->
+<view class="profile-container">
+  <!-- A. 用户信息区 - 重新设计 -->
+  <view class="user-info-section">
+    <view class="user-card">
+      <!-- 用户头像和基本信息 -->
+      <view class="user-basic-info">
+        <view class="user-avatar-container">
+          <view class="user-avatar">
+            <image src="{{userInfo.avatar}}" mode="aspectFill"></image>
+            <view class="avatar-placeholder" wx:if="{{!userInfo.avatar || userInfo.avatar === '/images/user-avatar.png'}}">
+              <text class="avatar-text">{{userInfo.nickName ? userInfo.nickName.charAt(0) : '机'}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="user-details">
+          <view class="user-name-line">
+            <text class="user-nickname">{{userInfo.nickName || '机主用户'}}</text>
+            <view class="auth-badge {{userInfo.hasBoundAircraft ? 'authenticated' : 'pending'}}">
+              <text class="badge-text">{{userInfo.hasBoundAircraft ? '已认证' : '待认证'}}</text>
+            </view>
+          </view>
+          <text class="user-level">{{userInfo.hasBoundAircraft ? 'VIP机主' : '普通用户'}}</text>
+        </view>
+        
+        <!-- 编辑按钮 -->
+        <view class="edit-profile-btn" bindtap="editUserInfo">
+          <text class="edit-text">编辑资料</text>
+        </view>
+      </view>
+      
+      <!-- 飞机统计信息 -->
+      <view class="aircraft-stats">
+        <view class="stat-item">
+          <text class="stat-number">{{userInfo.boundAircraftCount}}</text>
+          <text class="stat-label">绑定飞机</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-number">{{userInfo.aircraftStatus.flying || 0}}</text>
+          <text class="stat-label">正常</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- B. 机主服务（现代化列表布局） -->
+  <view class="owner-services-section">
+    <view class="section-header">
+      <text class="section-title">机主服务</text>
+    </view>
+    <view class="services-list">
+      <view wx:for="{{ownerServices}}" wx:key="id" class="service-item" bindtap="onServiceClick" data-id="{{item.id}}">
+        <view class="service-info">
+          <text class="service-icon">{{item.icon}}</text>
+          <view class="service-details">
+            <text class="service-title">{{item.title}}</text>
+            <text wx:if="{{item.subtitle}}" class="service-subtitle">{{item.subtitle}}</text>
+          </view>
+        </view>
+        <view class="service-right">
+          <view wx:if="{{item.badge > 0}}" class="service-badge">{{item.badge}}</view>
+          <text class="service-arrow">></text>
+        </view>
+      </view>
+      
+      <!-- 联系客服使用微信原生按钮 -->
+      <button class="service-item" open-type="contact" session-from="profile">
+        <view class="service-info">
+          <text class="service-icon">📞</text>
+          <view class="service-details">
+            <text class="service-title">联系客服</text>
+            <text class="service-subtitle">24小时在线支持</text>
+          </view>
+        </view>
+        <view class="service-right">
+          <text class="service-arrow">></text>
+        </view>
+      </button>
+    </view>
+  </view>
+
+  <!-- C. 我的资产区 -->
+  <view class="assets-section">
+    <view class="section-header">
+      <text class="section-title">我的资产</text>
+    </view>
+    <view class="assets-list">
+      <view class="asset-item" bindtap="onAssetClick" data-id="aircraft">
+        <view class="asset-info">
+          <text class="asset-icon">✈️</text>
+          <view class="asset-details">
+            <text class="asset-title">我的飞机</text>
+            <text class="asset-count">{{userInfo.boundAircraftCount}}个</text>
+          </view>
+        </view>
+        <text class="arrow">></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- F. 厂家管理区 -->
+  <view class="admin-section" wx:if="{{isAdmin}}">
+    <view class="section-header">
+      <text class="section-title">厂家管理</text>
+    </view>
+    <view class="admin-list">
+      <view class="admin-item" bindtap="goToAdminPage">
+        <view class="admin-info">
+          <text class="admin-icon">✈️</text>
+          <text class="admin-title">飞机管理</text>
+        </view>
+        <text class="arrow">></text>
+      </view>
+      <view class="admin-item" bindtap="goToInfoManagement">
+        <view class="admin-info">
+          <text class="admin-icon">📋</text>
+          <text class="admin-title">信息管理</text>
+        </view>
+        <text class="arrow">></text>
+      </view>
+      <view class="admin-item" bindtap="goToUserManagement">
+        <view class="admin-info">
+          <text class="admin-icon">👥</text>
+          <text class="admin-title">用户管理</text>
+        </view>
+        <text class="arrow">></text>
+      </view>
+    </view>
+  </view>
+</view>

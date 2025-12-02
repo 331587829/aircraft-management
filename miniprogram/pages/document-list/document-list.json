@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "文档列表",
+  "navigationBarBackgroundColor": "#1a365d",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

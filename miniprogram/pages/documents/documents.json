@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "资讯",
+  "navigationBarBackgroundColor": "#1a365d",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#f7fafc",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

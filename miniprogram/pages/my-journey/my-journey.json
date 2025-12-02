@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "我的旅程",
+    "navigationBarBackgroundColor": "#1a365d",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f5f5",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 50,
+    "usingComponents": {}
+}

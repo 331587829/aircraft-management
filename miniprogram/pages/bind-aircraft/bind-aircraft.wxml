@@ -1,0 +1,105 @@
+<!-- 飞机绑定页面 -->
+<view class="page-container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <text class="page-title">绑定飞机</text>
+    <text class="page-subtitle">输入飞机序列号完成绑定</text>
+  </view>
+
+  <!-- 绑定表单卡片 -->
+  <view class="card bind-card">
+    <!-- 飞机序列号输入 -->
+    <view class="input-group">
+      <text class="label">飞机序列号</text>
+      <view class="input-box {{isFocused ? 'focused' : ''}}">
+        <image class="input-icon" src="/images/tabbar/aircraft.png" mode="aspectFit"></image>
+        <input 
+          class="input-field" 
+          placeholder="请输入飞机序列号" 
+          value="{{aircraftSerialNumber}}" 
+          bindinput="onSerialNumberInput" 
+          bindfocus="onInputFocus"
+          bindblur="onInputBlur"
+          bindconfirm="onSearchConfirm" 
+          confirm-type="search"
+          placeholder-class="input-placeholder" 
+          maxlength="20"
+        />
+        <!-- 添加手动查询按钮 -->
+        <view class="search-btn" bindtap="onSearchClick" wx:if="{{aircraftSerialNumber}}">
+          <text>查询</text>
+        </view>
+      </view>
+      <view class="error-tip {{!isValidSerialNumber && aircraftSerialNumber ? 'show' : ''}}">
+        <text>⚠️ 请输入有效的飞机序列号</text>
+      </view>
+      <!-- 后端错误提示 -->
+      <view class="error-tip {{errorMessage ? 'show' : ''}}" style="margin-top: 10rpx;">
+        <text>⚠️ {{errorMessage}}</text>
+      </view>
+    </view>
+
+    <!-- 飞机信息显示区域 (搜索结果) -->
+    <view class="search-result" wx:if="{{aircraftInfo}}">
+      <view class="divider"></view>
+      <view class="info-title">飞机信息</view>
+      <view class="info-grid">
+        <view class="info-row">
+          <text class="info-label">序列号</text>
+          <text class="info-value">{{aircraftInfo.serialNumber}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">注册号</text>
+          <text class="info-value">{{aircraftInfo.registrationNumber}}</text>
+        </view>
+        <view class="info-row" wx:if="{{aircraftInfo.yearOfManufacture}}">
+          <text class="info-label">生产年份</text>
+          <text class="info-value">{{aircraftInfo.yearOfManufacture}}</text>
+        </view>
+        <view class="info-row">
+          <text class="info-label">当前状态</text>
+          <view class="status-badge active">
+            <text>运营中</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 绑定按钮 -->
+      <button 
+        class="submit-btn {{isBinding ? 'loading' : ''}}" 
+        hover-class="btn-hover"
+        bindtap="handleBindAircraft" 
+        disabled="{{isBinding}}">
+        {{isBinding ? '正在绑定...' : '确认绑定'}}
+      </button>
+    </view>
+
+    <!-- 提示信息 -->
+    <view class="tip-box">
+      <image class="tip-icon" src="/images/customer-service.svg" mode="aspectFit"></image>
+      <text class="tip-text">提示：一个用户可以绑定多架飞机，绑定后可以快速查看您负责的飞机信息。</text>
+    </view>
+  </view>
+
+  <!-- 已绑定飞机列表 -->
+  <view class="section-header" wx:if="{{boundAircraftList.length > 0}}">
+    <text>已绑定飞机</text>
+  </view>
+  
+  <view class="bound-list" wx:if="{{boundAircraftList.length > 0}}">
+    <block wx:for="{{boundAircraftList}}" wx:key="id">
+      <view class="bound-card">
+        <view class="bound-icon-box">
+          <image src="/images/tabbar/aircraft_selected.png" mode="aspectFit"></image>
+        </view>
+        <view class="bound-info">
+          <view class="bound-serial">{{item.serialNumber}}</view>
+          <view class="bound-reg">注册号: {{item.registrationNumber}}</view>
+        </view>
+        <view class="bound-action">
+          <view class="unbind-btn" bindtap="unbindAircraft" data-id="{{item.id}}">解除绑定</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

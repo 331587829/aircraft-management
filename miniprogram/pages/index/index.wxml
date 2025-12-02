@@ -1,0 +1,142 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="header">
+    <view class="header-title">
+      <text class="title-text">DLE Aircraft</text>
+    </view>
+    <image class="header-icon" src="/images/user-avatar.png"></image>
+  </view>
+
+  <!-- 轮播图 -->
+<view class="banner-section">
+  <swiper indicator-dots="true" autoplay="true" interval="5000" duration="1000" circular="true">
+    <block wx:for="{{bannerList}}" wx:key="id">
+      <swiper-item>
+        <view class="banner-item">
+          <image src="{{item.image}}" mode="aspectFill"></image>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+  <!-- 在线客服入口 -->
+<view class="customer-service-section">
+  <view class="service-header">
+    <text class="service-title">需要帮助？</text>
+    <text class="service-subtitle">专业团队随时为您服务</text>
+  </view>
+  <button class="service-button" open-type="contact" session-from="index" style="width: 483rpx; display: flex; box-sizing: border-box; left: 0rpx; top: 0rpx; height: 114rpx">
+    <view class="service-icon">
+      <image src="/images/customer-service.svg" mode="aspectFit"></image>
+    </view>
+    <view class="service-text">
+      <view class="service-btn-title">在线客服</view>
+      <view class="service-btn-desc">24小时在线支持</view>
+    </view>
+    <view class="service-arrow">
+      <image src="/images/arrow-right.svg" mode="aspectFit"></image>
+    </view>
+  </button>
+</view>
+
+  <!-- 动态信息区域 -->
+<view class="dynamic-info-section">
+  <view class="section-header">
+    <text class="section-title">最新资讯</text>
+    <view class="section-more" bindtap="viewAllDocuments">
+      查看全部
+    </view>
+  </view>
+  
+  <!-- 统一的动态列表容器 -->
+  <view class="dynamic-list">
+    <view 
+      wx:for="{{latestDocuments}}" 
+      wx:key="index" 
+      class="dynamic-item"
+      bindtap="navigateToDetail"
+      data-doc="{{item}}"
+    >
+      <view class="dynamic-tag {{item.type}}">{{item.tagName}}</view>
+      <view class="dynamic-content">
+        <text class="dynamic-title">{{item.title}}</text>
+        <text class="dynamic-time">{{item.createTime || '暂无数据'}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+  <!-- 服务特色 -->
+  <view class="features-section">
+    <view class="section-title">
+      <text class="title-text">服务特色</text>
+    </view>
+    <view class="features-list">
+      <view class="feature-item">
+        <view class="feature-icon">
+          <image src="/images/tabbar/aircraft.png" mode="aspectFit"></image>
+        </view>
+        <view class="feature-content">
+          <view class="feature-title">专业团队</view>
+          <view class="feature-desc">由资深航空工程师组成的专业技术团队</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">
+          <image src="/images/tabbar/documents.png" mode="aspectFit"></image>
+        </view>
+        <view class="feature-content">
+          <view class="feature-title">快速响应</view>
+          <view class="feature-desc">24小时紧急技术支持响应机制</view>
+        </view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">
+          <image src="/images/tabbar/profile.png" mode="aspectFit"></image>
+        </view>
+        <view class="feature-content">
+          <view class="feature-title">原厂配件</view>
+          <view class="feature-desc">全部使用原厂认证配件，确保飞行安全</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近活动 -->
+  <view class="activity-section">
+    <view class="section-title">
+      <text class="title-text">最近活动</text>
+    </view>
+    <view class="activity-list">
+      <view class="activity-item">
+        <view class="activity-date">
+          <view class="date-day">15</view>
+          <view class="date-month">10月</view>
+        </view>
+        <view class="activity-content">
+          <view class="activity-title">航空安全培训</view>
+          <view class="activity-time">2023-10-15 09:00-11:30</view>
+          <view class="activity-location">上海浦东国际机场培训中心</view>
+        </view>
+      </view>
+      <view class="activity-item">
+        <view class="activity-date">
+          <view class="date-day">22</view>
+          <view class="date-month">10月</view>
+        </view>
+        <view class="activity-content">
+          <view class="activity-title">新机型维修技术研讨会</view>
+          <view class="activity-time">2023-10-22 13:30-16:00</view>
+          <view class="activity-location">北京首都国际机场会议中心</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <view class="footer-text">2025 © DLE 版权所有</view>
+    <view class="footer-contact">客服热线：400-100-6090</view>
+  </view>
+</view>

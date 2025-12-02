@@ -1,0 +1,118 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="header">
+    <view class="header-title">{{category === 'all' ? '全部文档' : category}}</view>
+    <view class="header-actions">
+      <view class="refresh-btn" bindtap="refreshPage">
+        <text class="refresh-icon">↻</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索区域 -->
+  <view class="search-container">
+    <view class="search-bar">
+      <text class="search-icon">🔎</text>
+      <input type="text" placeholder="搜索文档标题" value="{{searchQuery}}" bindinput="onSearch" bindconfirm="onSearch"/>
+    </view>
+  </view>
+
+  <!-- 筛选区域（暂时隐藏，因为只有一个机型） -->
+  <!-- <view class="filter-container">
+    <text class="filter-label">机型筛选：</text>
+    <picker bindchange="onAircraftChange" value="{{aircraftModels.indexOf(filterAircraft)}}" range="{{aircraftModels}}">
+      <view class="filter-picker">
+        {{filterAircraft === 'all' ? '全部机型' : filterAircraft}}
+        <icon type="arrowright" size="12" class="filter-icon"/>
+      </view>
+    </picker>
+  </view> -->
+
+  <!-- 加载状态 -->
+  <view class="loading-container" wx:if="{{loading && documentList.length === 0}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+
+  <!-- 文档列表 -->
+  <view class="document-list" wx:elif="{{documentList.length > 0}}">
+    <block wx:for="{{documentList}}" wx:key="id">
+      <view class="document-item">
+        <!-- 文档基本信息 -->
+        <view class="document-header">
+          <view class="document-title">{{item.title}}</view>
+          <view class="document-meta">
+            <text class="document-version">V{{item.version}}</text>
+            <text class="document-size">{{item.fileSize || '未知大小'}}</text>
+            <!-- 文档类型标识 -->
+            <view class="document-type-tags">
+              <text class="type-tag rich-text-tag" wx:if="{{item.content && item.content.includes('<')}}">富文本</text>
+              <text class="type-tag attachment-tag" wx:if="{{item.attachments && item.attachments.length > 0}}">附件({{item.attachments.length}})</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 文档详情 -->
+        <view class="document-details">
+          <view class="detail-row">
+            <view class="detail-label">所属分类：</view>
+            <view class="detail-value">{{item.categoryName || '未分类'}}</view>
+          </view>
+          <view class="detail-row">
+            <view class="detail-label">发布日期：</view>
+            <view class="detail-value">{{item.publishDate || '未知日期'}}</view>
+          </view>
+          <view class="detail-row">
+            <view class="detail-label">作者：</view>
+            <view class="detail-value">{{item.author || '未知作者'}}</view>
+          </view>
+        </view>
+
+        <!-- 文档统计和操作 -->
+        <view class="document-footer">
+          <view class="document-stats">
+            <view class="stat-item">
+              <text class="stat-icon">👁️</text>
+              <text class="stat-text">{{item.views || 0}} 次浏览</text>
+            </view>
+            <view class="stat-item">
+              <text class="stat-icon">📥</text>
+              <text class="stat-text">{{item.downloads || 0}} 次下载</text>
+            </view>
+          </view>
+          <view class="document-actions">
+            <!-- 来自信息管理页面时显示编辑和删除按钮 -->
+            <view wx:if="{{fromManagement}}" class="management-actions">
+              <button class="edit-button" bindtap="editDocument" data-id="{{item.id}}" size="mini">编辑</button>
+              <button class="delete-button" bindtap="deleteDocument" data-id="{{item.id}}" size="mini">删除</button>
+            </view>
+            <!-- 普通访问时显示查看详情和下载按钮 -->
+            <view wx:else class="normal-actions">
+              <button class="detail-button" bindtap="viewDocumentDetail" data-id="{{item.id}}" size="mini">查看详情</button>
+              <button class="download-button" bindtap="downloadDocument" data-id="{{item.id}}" size="mini">下载</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{hasMore && !loading}}">
+      <text>上拉加载更多</text>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:else>
+    <view class="empty-icon">📄</view>
+    <text class="empty-text">暂无文档数据</text>
+    <text class="empty-subtext">
+      {{searchQuery ? '没有找到匹配的文档' : '该分类下暂无文档'}}
+    </text>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="footer-tip">
+    <text>根据您的权限显示可访问的文档</text>
+  </view>
+</view>

@@ -1,0 +1,81 @@
+<!--pages/document-edit/document-edit.wxml-->
+<view class="modern-container">
+  <!-- 主要内容区域 - 现代化满屏布局 -->
+  <view class="modern-main-content">
+    <!-- 标题输入 -->
+    <view class="modern-input-section">
+      <text class="modern-section-label">标题</text>
+      <view class="input-wrapper">
+        <input 
+          class="modern-title-input" 
+          placeholder="请输入标题..." 
+          value="{{title}}" 
+          bindinput="onTitleInput" 
+          maxlength="100"
+        />
+        <text class="modern-character-count">{{title.length}}/100</text>
+      </view>
+    </view>
+    
+    <!-- 分类选择 -->
+    <view class="modern-input-section">
+      <text class="modern-section-label">分类</text>
+      <picker 
+        range="{{categoryNames}}" 
+        value="{{categoryIndex}}" 
+        bindchange="onCategoryChange"
+        class="modern-category-selector"
+      >
+        <view class="modern-category-text">{{selectedCategory ? selectedCategory.name : '请选择分类'}}</view>
+      </picker>
+    </view>
+    
+    <!-- 权限选择 -->
+    <view class="modern-input-section">
+      <text class="modern-section-label">权限</text>
+      <view class="modern-permission-selector">
+        <view 
+          class="modern-permission-option {{permissionLevel === 'public' ? 'active' : ''}}" 
+          bindtap="setPermission" 
+          data-level="public"
+        >
+          <text class="permission-icon">🌐</text>
+          <text class="permission-text">公开</text>
+        </view>
+        <view 
+          class="modern-permission-option {{permissionLevel === 'vip' ? 'active' : ''}}" 
+          bindtap="setPermission" 
+          data-level="vip"
+        >
+          <text class="permission-icon">🔒</text>
+          <text class="permission-text">VIP机主</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 内容编辑 -->
+    <view class="modern-input-section modern-content-section">
+      <text class="modern-section-label">内容</text>
+      
+      <!-- 附件工具栏 - 放在内容标题下面，内容编辑框外面 -->
+      <view class="modern-attachment-toolbar">
+        <button class="modern-btn-attachment" bindtap="addImage"><text class="attachment-icon">🖼️</text></button>
+        <button class="modern-btn-attachment" bindtap="insertHeading"><text class="attachment-icon">H2</text></button>
+        <button class="modern-btn-attachment" bindtap="insertDivider"><text class="attachment-icon">—</text></button>
+      </view>
+      
+      <editor id="editor" class="modern-editor" placeholder="请输入内容..." bindready="onEditorReady" bindinput="onEditorInput"></editor>
+    </view>
+    
+    
+  </view>
+  
+  <!-- 发布按钮区域 -->
+  <view class="modern-footer">
+    <button class="modern-btn-publish {{(!hasContent || isSubmitting) ? 'disabled' : ''}}" bindtap="onSave" disabled="{{!hasContent || isSubmitting}}">
+      {{isEdit ? '保存' : '发布'}}
+    </button>
+  </view>
+  
+
+</view>
